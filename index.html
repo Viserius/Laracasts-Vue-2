@@ -11,9 +11,14 @@
 <body>
 
     <div id="root">
-        <input type="text" id="input" v-model="message">
 
-        <p>The value of the input is: {{ message }}.</p>
+        <ul>
+            <li v-for="name in names" v-text="name"></li>
+        </ul>
+
+        <input id="addNameBox" type="text">
+        <button id="addNameButton">Add name</button>
+
     </div>
 
 
@@ -22,12 +27,26 @@
 
     <script>
 
-        new Vue({
+        var app = new Vue({
             el: '#root',
             data: {
-                message: 'Hello World'
+                names: ['Alice', 'Bob', 'Charlie', 'Drake']
+            },
+
+            mounted() {
+
+                document.querySelector('#addNameButton').addEventListener('click', () => {
+                    let name = document.querySelector('#addNameBox');
+
+                    app.names.push(name.value);
+
+                    name.value = "";
+                });
+
             }
+
         })
+
     </script>
 
 </body>
