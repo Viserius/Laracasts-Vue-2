@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <title>VueJS Application</title>
+
+        <style>
+            .color-red { color: red; }
+            .color-blue { color: blue; }
+            .is-loading { background:red; }
+        </style>
+
+    </head>
+
+    <body>
+
+        <div id="root">
+
+            <!-- Here, title is text, not the variable title. WRONG! -->
+            <button title="title">Hover over me</button>
+
+            <!-- Here, title is binded to the attribute "title" with content {{ title }}-->
+            <button v-bind:title="title">Hover over me</button>
+
+            <!-- Short-hand notation for v-bind:title -->
+            <button :title="title">Hover over me</button>
+
+            <hr>
+
+            <!-- Bind a dynamic class name -->
+            <h1 :class="className">I am classed to Red</h1>
+
+            <!-- Conditional class, based on expression -->
+            <button @click="load" :class="{ 'is-loading': isLoading }">Click Me</button>
+
+            <!-- Conditional attribute. If this.isDisabled true, then button disables -->
+            <button @click="load" :disabled="isDisabled">Click Me</button>
+
+        </div>
+
+
+        <!-- Vue Development version -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+        <script>
+
+            var app = new Vue({
+
+                el: '#root',
+
+                data: {
+
+                    title: 'Now, the title is being set through JavaScript.',
+
+                    className: 'color-red',
+
+                    isLoading: false,
+
+                    isDisabled: false,
+
+                },
+
+                methods: {
+                    load() {
+                        this.isLoading = true;
+                        this.isDisabled = true;
+                    }
+                }
+
+            })
+
+        </script>
+
+    </body>
+
+</html>
